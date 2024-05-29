@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/standujar/ebook-demo.git
+    repoURL: https://github.com/standujar/tp-perso-vcluster.git
     targetRevision: main
-    path: argo-rollouts
+    path: crossplane-resources-manifests
   destination:
     server: https://kubernetes.default.svc
     namespace: argo
