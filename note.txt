@@ -1,0 +1,4 @@
+# Création de l'application sur ArgoCD
+
+# Création du manifest pour les objets de crossplane et publication sur Github
+# Définition des values du projet Cluster x Wordpress et publication sur Github

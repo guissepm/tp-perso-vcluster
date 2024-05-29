@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tp-perso
+  namespace: argo
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/standujar/ebook-demo.git
+    targetRevision: main
+    path: argo-rollouts
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argo
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
