@@ -17,8 +17,7 @@ spec:
         apiVersion: helm.crossplane.io/v1beta1
         kind: Release
         metadata:
-          annotations:
-            crossplane.io/external-name: # patched
+          annotations: {}
         spec:
           rollbackLimit: 3
           forProvider:
@@ -41,10 +40,12 @@ spec:
             name: default
       patches:
         - fromFieldPath: metadata.name
+          type: FromCompositeFieldPath
           toFieldPath: metadata.annotations[crossplane.io/external-name]
           policy:
             fromFieldPath: Required
         - fromFieldPath: metadata.name
+          type: FromCompositeFieldPath
           toFieldPath: metadata.name
       readinessChecks:
       - type: MatchString
