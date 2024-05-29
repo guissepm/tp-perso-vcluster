@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: tp-perso-crossplane-resources
+  name: tp-perso-wordpress
   namespace: argo
 spec:
   project: default
