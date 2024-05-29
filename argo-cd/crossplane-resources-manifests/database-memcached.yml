@@ -1,18 +1,18 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
 metadata:
-  name: keyvalue.db.local.tp-perso.io
+  name: cache.db.local.tp-perso.io
   labels:
     type: dev
     provider: local
-    kind: keyvalue
+    kind: cache
 spec:
   writeConnectionSecretsToNamespace: tp-perso
   compositeTypeRef:
     apiVersion: tp-perso.io/v1alpha1
     kind: Database
   resources:
-    - name: redis-helm-release
+    - name: memcached-helm-release
       base:
         apiVersion: helm.crossplane.io/v1beta1
         kind: Release
@@ -24,11 +24,12 @@ spec:
           forProvider:
             namespace: tp-perso
             chart:
-              name: redis
+              name: memcached
               repository: https://charts.bitnami.com/bitnami
-              version: "17.11.3"
+              version: "7.4.1"
             values:
-              architecture: standalone
+              persistence:
+                size: 1Gi
           providerConfigRef:
             name: default
       patches:
@@ -41,7 +42,7 @@ spec:
           transforms:
             - type: string
               string:
-                fmt: "%s-redis"         
+                fmt: "%s"         
       readinessChecks:
       - type: MatchString
         fieldPath: status.atProvider.state

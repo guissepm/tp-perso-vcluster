@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/standujar/tp-perso-vcluster.git
     targetRevision: main
-    path: crossplane-resources-manifests
+    path: argo-cd/crossplane-resources-manifests
   destination:
     server: https://kubernetes.default.svc
     namespace: argo

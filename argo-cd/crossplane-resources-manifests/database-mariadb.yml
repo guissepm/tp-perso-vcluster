@@ -12,7 +12,7 @@ spec:
     apiVersion: tp-perso.io/v1alpha1
     kind: Database
   resources:  
-    - name: postgresql-helm-release
+    - name: mariadb-helm-release
       base:
         apiVersion: helm.crossplane.io/v1beta1
         kind: Release
@@ -24,20 +24,19 @@ spec:
           forProvider:
             namespace: tp-perso
             chart:
-              name: postgresql
+              name: mariadb
               repository: https://charts.bitnami.com/bitnami
-              version: "12.5.9"
+              version: "18.2.0"
             values:
               image:
                 debug: true
               primary: 
-                initdb:
-                  user: wordpress
-                  password: wordpress
-              global:
-                postgresql:
-                  auth: 
-                    postgresPassword: postgres
+                persistence:
+                  size: 1Gi
+              auth: 
+                username: "bn_wordpress"
+                database: "bitnami_wordpress"
+                password: "bn_wordpress_pass"
           providerConfigRef:
             name: default
       patches:
@@ -47,10 +46,6 @@ spec:
             fromFieldPath: Required
         - fromFieldPath: metadata.name
           toFieldPath: metadata.name
-          transforms:
-            - type: string
-              string:
-                fmt: "%s-postgres"
       readinessChecks:
       - type: MatchString
         fieldPath: status.atProvider.state
