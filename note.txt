@@ -2,3 +2,30 @@
 
 # Création du manifest pour les objets de crossplane et publication sur Github
 # Définition des values du projet Cluster x Wordpress et publication sur Github
+
+// Plan de démonstration pour le déploiement avec Crossplane
+
+// Étape 1: Définir les Custom Resource Definitions (CRD) nécessaires
+// - CRD pour Vcluster x Wordpress
+// - CRD pour la base de données
+// - CRD pour le cache
+
+// Étape 2: Créer des compositions Crossplane
+// - Composition pour Vcluster qui encapsule la ressources Wordpress qui configure l'application et la relie à la base de données et au cache
+// - Composition pour la base de données qui prévoit le déploiement et la configuration propre au Wordpress
+// - Composition pour le cache qui met en place une instance Memcached
+
+// Étape 3: Publier les CRD et les compositions sur un dépôt GitHub
+// - Utiliser Git pour versionner et partager les configurations
+
+// Étape 4: Utiliser ArgoCD pour déployer les compositions sur un cluster Kubernetes
+// - Configurer ArgoCD pour surveiller le dépôt GitHub
+// - Définir les Applications ArgoCD pour l'ensemble des CRDs et Compositions
+// - Observer le déploiement et la gestion des ressources via ArgoCD
+
+// Étape 5: Vérification et tests
+// - Vérifier que le Vcluster est opérationnel
+// - Tester le déploiement de Wordpress, accéder à l'interface et publier un article
+// - Confirmer que la base de données et le cache fonctionnent correctement avec Wordpress
+
+// Fin du plan de démonstration

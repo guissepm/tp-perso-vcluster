@@ -1,27 +1,6 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: tp-perso-wordpress
-  namespace: argo
-spec:
-  project: default
-  source:
-    repoURL: https://github.com/standujar/tp-perso-vcluster.git
-    targetRevision: main
-    path: argo-cd/crossplane-resources-manifests
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: argo
-  syncPolicy:
-    syncOptions:
-      - CreateNamespace=true
-    automated:
-      prune: true
-      selfHeal: true
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
   name: tp-perso-crossplane-resources
   namespace: argo
 spec:
@@ -36,6 +15,23 @@ spec:
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
-    automated:
-      prune: true
-      selfHeal: true
+    automated: false
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tp-perso-wordpress
+  namespace: argo
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/standujar/tp-perso-vcluster.git
+    targetRevision: main
+    path: argo-cd/crossplane-resources-manifests
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argo
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated: false
