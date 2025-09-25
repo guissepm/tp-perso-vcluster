@@ -96,7 +96,7 @@ spec:
             secretRef:
               name: # patched
               namespace: tp-perso
-              key: config
+              key: kubeconfig
       patches:
         - fromFieldPath: metadata.name
           toFieldPath: spec.credentials.secretRef.name
