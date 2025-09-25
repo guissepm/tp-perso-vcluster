@@ -64,7 +64,7 @@ spec:
             - fromFieldPath: metadata.name
             strategy: string
             string:
-              fmt: "--out-kube-config-secret=vc-%s-secret"
+              fmt: "--out-kube-config-secret=%s"
           toFieldPath: spec.forProvider.values.syncer.extraArgs[0]
         - type: CombineFromComposite
           combine:
